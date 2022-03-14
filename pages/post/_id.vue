@@ -18,14 +18,36 @@
 			beatae odio ratione consectetur debitis quam tenetur aspernatur, sequi voluptates! Sapiente
 			sequi voluptatum quas impedit dolore?
 		</main>
-		<footer></footer>
+		<footer>
+			<!-- app-comment-form -->
+			<app-comment-form v-if="commentForm" @created="createCommentHandler" />
+			<!-- app-comment-form -->
+
+			<div v-if="true" class="comments">
+				<app-comment v-for="(comment, index) in 4" :key="index" :comment="comment" />
+			</div>
+			<div v-else class="text-center"><b>Comment are no</b></div>
+		</footer>
 	</article>
 </template>
 
 <script>
+import AppComment from '@/components/main/Comment';
+import AppCommentForm from '@/components/main/CommentForm';
 export default {
+	components: { AppComment, AppCommentForm },
 	validate(contex) {
 		return Boolean(contex.params.id);
+	},
+	data() {
+		return {
+			commentForm: true,
+		};
+	},
+	methods: {
+		createCommentHandler() {
+			this.commentForm = false;
+		},
 	},
 };
 </script>
