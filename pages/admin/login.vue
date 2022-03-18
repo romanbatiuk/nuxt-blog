@@ -36,6 +36,7 @@ export default {
 			loading: false,
 		};
 	},
+
 	mounted() {
 		const { message } = this.$route.query;
 
