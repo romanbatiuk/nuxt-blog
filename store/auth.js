@@ -1,5 +1,5 @@
 export const state = () => ({
-	token: null, // null
+	token: true, // null
 });
 
 export const mutations = {
@@ -22,6 +22,15 @@ export const actions = {
 		} catch (e) {
 			commit('setError', e, { root: true });
 			throw e;
+		}
+	},
+
+	// eslint-disable-next-line require-await
+	async createUser({ commit }, formData) {
+		try {
+			console.log('hello');
+		} catch (e) {
+			console.log(e);
 		}
 	},
 
