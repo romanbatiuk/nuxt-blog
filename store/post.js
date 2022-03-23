@@ -13,9 +13,15 @@ export const actions = {
 			}, 500);
 		});
 	},
+
+	// eslint-disable-next-line require-await
+	async update({ commit }, { id, text }) {
+		console.log(id, text);
+	},
+
 	async remove(id) {},
 
-	async fetchAdminById({ commit }, id) {
+	async fetchAdminPostById({ commit }, id) {
 		return await new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(posts.find((p) => p._id === id));
