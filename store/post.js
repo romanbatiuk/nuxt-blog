@@ -14,13 +14,6 @@ export const actions = {
 		});
 	},
 
-	// eslint-disable-next-line require-await
-	async update({ commit }, { id, text }) {
-		console.log(id, text);
-	},
-
-	async remove(id) {},
-
 	async fetchAdminPostById({ commit }, id) {
 		return await new Promise((resolve) => {
 			setTimeout(() => {
@@ -28,4 +21,29 @@ export const actions = {
 			}, 500);
 		});
 	},
+
+	async create({ commit, dispatch }, { title, text }) {
+		try {
+			const formData = new FormData();
+
+			formData.append('title', title);
+			formData.append('text', text);
+
+			return await new Promise((resolve) => {
+				setTimeout(() => {
+					resolve();
+				}, 500);
+			});
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
+	},
+
+	// eslint-disable-next-line require-await
+	async update({ commit }, { id, text }) {
+		console.log(id, text);
+	},
+
+	async remove(id) {},
 };
