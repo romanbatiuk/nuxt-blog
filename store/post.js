@@ -22,12 +22,13 @@ export const actions = {
 		});
 	},
 
-	async create({ commit, dispatch }, { title, text }) {
+	async create({ commit, dispatch }, { title, text, image }) {
 		try {
 			const formData = new FormData();
 
 			formData.append('title', title);
 			formData.append('text', text);
+			formData.append('image', image, image.name);
 
 			return await new Promise((resolve) => {
 				setTimeout(() => {

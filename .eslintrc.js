@@ -14,6 +14,5 @@ module.exports = {
 	rules: {
 		'vue/multi-word-component-names': 'off',
 		'no-console': 'off',
-		'vue/component-definition-name-casing': ['error', 'PascalCase' | 'kebab-case'],
 	},
 };

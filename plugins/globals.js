@@ -4,4 +4,4 @@ import Element from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/ua';
 
 Vue.use(Element, { locale });
-Vue.component('vue-markdown', VueMarkdown);
+Vue.component('VueMarkdown', VueMarkdown);
