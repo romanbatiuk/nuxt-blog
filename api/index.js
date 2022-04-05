@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+// Require API routes
+const authRoutes = require('./routes/auth.routes');
+
 const connectDB = async () => {
 	try {
 		await mongoose.connect(process.env.MONGO_URI, {
@@ -20,6 +23,9 @@ const connectDB = async () => {
 connectDB();
 
 app.use(bodyParser.json());
+
+// Import API Routes
+app.use('/auth', authRoutes);
 
 module.exports = app;
 
