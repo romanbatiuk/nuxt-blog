@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const passportStrategy = require('./middleware/passport-strategy');
 
 const app = express();
 
@@ -22,6 +24,10 @@ const connectDB = async () => {
 
 connectDB();
 
+app.use(passport.initialize());
+passport.use(passportStrategy);
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Import API Routes
