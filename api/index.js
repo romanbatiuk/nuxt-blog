@@ -8,6 +8,7 @@ const app = express();
 
 // Require API routes
 const authRoutes = require('./routes/auth.routes');
+const postRoutes = require('./routes/post.routes');
 
 const connectDB = async () => {
 	try {
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 
 // Import API Routes
 app.use('/auth', authRoutes);
+app.use('/post', postRoutes);
 
 module.exports = app;
 
