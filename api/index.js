@@ -9,6 +9,7 @@ const app = express();
 // Require API routes
 const authRoutes = require('./routes/auth.routes');
 const postRoutes = require('./routes/post.routes');
+const commentRoutes = require('./routes/comment.routes');
 
 const connectDB = async () => {
 	try {
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 // Import API Routes
 app.use('/auth', authRoutes);
 app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 module.exports = app;
 

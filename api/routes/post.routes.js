@@ -30,4 +30,4 @@ router.get('/', getAllPosts);
 router.get('/:id', getPostById);
 router.put('/:id', addView);
 
-router.module.exports = router;
+module.exports = router;
