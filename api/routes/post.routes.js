@@ -1,5 +1,7 @@
 const passport = require('passport');
 const { Router } = require('express');
+const upload = require('../middleware/upload');
+
 const {
 	createPost,
 	getAllPosts,
@@ -12,7 +14,12 @@ const {
 const router = Router();
 
 // /api/post/admin/
-router.post('/admin', passport.authenticate('jwt', { session: false }), createPost);
+router.post(
+	'/admin',
+	passport.authenticate('jwt', { session: false }),
+	upload.single('image'),
+	createPost,
+);
 router.get('/admin', passport.authenticate('jwt', { session: false }), getAllPosts);
 router.get('/admin/:id', passport.authenticate('jwt', { session: false }), getPostById);
 router.put('/admin/:id', passport.authenticate('jwt', { session: false }), updatePostById);
