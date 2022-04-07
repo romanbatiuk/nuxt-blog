@@ -1,5 +1,5 @@
 export const state = () => ({
-	token: true, // null
+	token: null,
 });
 
 export const mutations = {
@@ -14,13 +14,7 @@ export const mutations = {
 export const actions = {
 	async login({ commit, dispatch }, formData) {
 		try {
-			// const token = await new Promise((resolve, reject) => {
-			// 	setTimeout(() => resolve('mock-token'), 2000);
-			// });
-			// console.log('token', token);
-			// dispatch('setToken', token);
 			const { token } = await this.$axios.$post('/api/auth/admin/login', formData);
-			console.log('token', token);
 			dispatch('setToken', token);
 		} catch (e) {
 			commit('setError', e, { root: true });
@@ -28,24 +22,27 @@ export const actions = {
 		}
 	},
 
-	// eslint-disable-next-line require-await
 	async createUser({ commit }, formData) {
 		try {
-			console.log('hello');
+			await this.$axios.$post('/api/auth/admin/create', formData);
 		} catch (e) {
-			console.log(e);
+			commit('setError', e, { root: true });
+			throw e;
 		}
 	},
 
 	setToken({ commit }, token) {
+		// this.$axios.setToken(token, 'Bearer');
 		commit('setToken', token);
 	},
 
 	logout({ commit }) {
+		// this.$axios.setToken(false);
 		commit('clearToken');
 	},
 };
 
 export const getters = {
 	isAuthenticated: (state) => Boolean(state.token),
+	token: (state) => state.token,
 };
