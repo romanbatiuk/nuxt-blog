@@ -12,7 +12,14 @@ export const mutations = {
 	},
 };
 
-export const actions = {};
+export const actions = {
+	nuxtServerInit({ commit, dispatch }) {
+		dispatch('auth/autoLogin');
+		// if (req.session.user) {
+		// 	commit('user', req.session.user);
+		// }
+	},
+};
 
 export const getters = {
 	error: (state) => state.error,
