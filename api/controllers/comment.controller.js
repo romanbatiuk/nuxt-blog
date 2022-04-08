@@ -11,7 +11,7 @@ module.exports.createComment = async (req, res) => {
 
 		await post.save();
 
-		res.status(201).json({ message: 'Комментарий успешно добавлен' }, comment);
+		res.status(201).json({ message: 'Комментарий успешно добавлен', comment });
 	} catch (err) {
 		res.status(500).json(err);
 	}

@@ -16,13 +16,13 @@
 		</main>
 		<footer>
 			<!-- app-comment-form -->
-			<app-comment-form v-if="commentForm" @created="createCommentHandler" />
+			<app-comment-form v-if="commentForm" :post-id="post._id" @created="createCommentHandler" />
 			<!-- app-comment-form -->
 
 			<div v-if="post.comments.length" class="comments">
-				<app-comment v-for="(comment, index) in 4" :key="index" :comment="comment" />
+				<app-comment v-for="comment in post.comments" :key="comment._id" :comment="comment" />
 			</div>
-			<div v-else class="text-center"><b>Comment are no</b></div>
+			<div v-else class="text-center"><b>Комментариев нет</b></div>
 		</footer>
 	</article>
 </template>
@@ -54,7 +54,8 @@ export default {
 		},
 	},
 	methods: {
-		createCommentHandler() {
+		createCommentHandler({ comment }) {
+			this.post.comments.unshift(comment);
 			this.commentForm = false;
 		},
 	},
