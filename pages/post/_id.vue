@@ -2,28 +2,24 @@
 	<article class="post">
 		<header class="post-header">
 			<div class="post-header__title">
-				<h1>Post title</h1>
+				<h1>{{ post.title }}</h1>
 				<nuxt-link to="/"><i class="el-icon-back"></i></nuxt-link>
 			</div>
 			<div class="post-header__info">
-				<small><i class="el-icon-time"></i>{{ new Date().toLocaleString() }}</small>
-				<small><i class="el-icon-view el-i"></i> 43</small>
+				<small><i class="el-icon-time"></i>{{ new Date(post.date).toLocaleString() }}</small>
+				<small><i class="el-icon-view el-i"></i> {{ post.views }}</small>
 			</div>
-			<div class="post-header__img">
-				<img src="https://cf.bstatic.com/images/hotel/840x460/330/330517833.jpg" alt="Post title" />
-			</div>
+			<div class="post-header__img"><img :src="image" :alt="post.title" /></div>
 		</header>
 		<main class="post-content">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam in delectus rerum alias rem
-			beatae odio ratione consectetur debitis quam tenetur aspernatur, sequi voluptates! Sapiente
-			sequi voluptatum quas impedit dolore?
+			<vue-markdown>{{ post.text }}</vue-markdown>
 		</main>
 		<footer>
 			<!-- app-comment-form -->
 			<app-comment-form v-if="commentForm" @created="createCommentHandler" />
 			<!-- app-comment-form -->
 
-			<div v-if="true" class="comments">
+			<div v-if="post.comments.length" class="comments">
 				<app-comment v-for="(comment, index) in 4" :key="index" :comment="comment" />
 			</div>
 			<div v-else class="text-center"><b>Comment are no</b></div>
@@ -36,13 +32,26 @@ import AppComment from '@/components/main/Comment';
 import AppCommentForm from '@/components/main/CommentForm';
 export default {
 	components: { AppComment, AppCommentForm },
+
 	validate(contex) {
 		return Boolean(contex.params.id);
 	},
+
+	async asyncData({ store, params }) {
+		const post = await store.dispatch('post/fetchPostById', params.id);
+		await store.dispatch('post/addView', post);
+		return { post };
+	},
+
 	data() {
 		return {
 			commentForm: true,
 		};
+	},
+	computed: {
+		image() {
+			return `/images${this.post.imageUrl}`;
+		},
 	},
 	methods: {
 		createCommentHandler() {

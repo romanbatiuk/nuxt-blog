@@ -28,6 +28,6 @@ router.delete('/admin/:id', passport.authenticate('jwt', { session: false }), re
 // /api/post/
 router.get('/', getAllPosts);
 router.get('/:id', getPostById);
-router.put('/:id', addView);
+router.put('/add/view/:id', addView);
 
 module.exports = router;
