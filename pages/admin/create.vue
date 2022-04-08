@@ -3,7 +3,7 @@
 		<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
 			<h2>Создать новый пост</h2>
 			<el-form-item label="Название поста" prop="title">
-				<el-input v-model.trim="controls.title" type="text"></el-input>
+				<el-input v-model="controls.title" type="text"></el-input>
 			</el-form-item>
 
 			<el-form-item label="Текст в формате .md или .html" prop="text">

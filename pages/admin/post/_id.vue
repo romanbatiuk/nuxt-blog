@@ -51,6 +51,9 @@ export default {
 	head() {
 		return { title: `Пост | ${this.post.title}` };
 	},
+	mounted() {
+		this.controls.text = this.post.text;
+	},
 	methods: {
 		onSubmit() {
 			this.$refs.form.validate(async (valid) => {

@@ -1,25 +1,20 @@
-const posts = [
-	{ _id: 'id_1', title: 'Post', date: new Date(), views: 22, comments: [1, 2] },
-	{ _id: 'id_2', title: 'Post 2', date: new Date(), views: 22, comments: [1, 2] },
-	{ _id: 'id_3', title: 'Post 3', date: new Date(), views: 22, comments: [1, 2] },
-	{ _id: 'id_4', title: 'Post 4', date: new Date(), views: 22, comments: [1, 2] },
-];
-
 export const actions = {
-	async fetchAdminPosts() {
-		return await new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(posts);
-			}, 500);
-		});
+	async fetchAdminPosts({ commit }) {
+		try {
+			return await this.$axios.$get(`${this.$config.domain}api/post/admin`);
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
 	},
 
 	async fetchAdminPostById({ commit }, id) {
-		return await new Promise((resolve) => {
-			setTimeout(() => {
-				resolve(posts.find((p) => p._id === id));
-			}, 500);
-		});
+		try {
+			return await this.$axios.$get(`${this.$config.domain}api/post/admin/${id}`);
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
 	},
 
 	async create({ commit, dispatch }, { title, text, image }) {
@@ -30,21 +25,28 @@ export const actions = {
 			formData.append('text', text);
 			formData.append('image', image, image.name);
 
-			return await new Promise((resolve) => {
-				setTimeout(() => {
-					resolve();
-				}, 500);
-			});
+			return await this.$axios.$post('/api/post/admin/', formData);
 		} catch (e) {
 			commit('setError', e, { root: true });
 			throw e;
 		}
 	},
 
-	// eslint-disable-next-line require-await
 	async update({ commit }, { id, text }) {
-		console.log(id, text);
+		try {
+			return await this.$axios.$put(`/api/post/admin/${id}`, { text });
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
 	},
 
-	async remove(id) {},
+	async remove({ commit }, id) {
+		try {
+			return await this.$axios.$delete(`/api/post/admin/${id}`);
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
+	},
 };

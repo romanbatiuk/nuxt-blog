@@ -4,15 +4,19 @@ const moment = require('moment');
 
 const storage = multer.diskStorage({
 	destination(req, file, cb) {
-		cb(null, path.resolve(__dirname, '../..', 'static'));
+		cb(null, path.resolve(__dirname, '../..', 'static/images'));
 	},
 	filename(req, file, cb) {
-		cb(null, `${file.originalname}-${moment().format('YYYYMMDD')}`);
+		cb(null, `${moment().format('YYYYMMDD')}-${file.originalname}`);
 	},
 });
 
 const fileFilter = (req, file, cb) => {
-	if (file.memetype === 'image/png' || file.memetype === 'image/jpeg') {
+	if (
+		file.mimetype === 'image/png' ||
+		file.mimetype === 'image/jpeg' ||
+		file.mimetype === 'image/jpg'
+	) {
 		cb(null, true);
 	} else {
 		cb(null, false);
