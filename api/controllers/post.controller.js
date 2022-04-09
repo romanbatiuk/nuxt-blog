@@ -64,3 +64,23 @@ module.exports.addView = async (req, res) => {
 		res.status(500).json(err);
 	}
 };
+
+module.exports.getAnalytics = async (req, res) => {
+	try {
+		const posts = await Post.find();
+		const labels = posts.map((post) => post.title);
+		const resJson = {
+			comments: {
+				labels,
+				data: posts.map((post) => post.comments.length),
+			},
+			views: {
+				labels,
+				data: posts.map((post) => post.views),
+			},
+		};
+		res.json(resJson);
+	} catch (err) {
+		res.status(500).json(err);
+	}
+};

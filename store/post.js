@@ -10,7 +10,7 @@ export const actions = {
 
 	async fetchAdminPostById({ commit }, id) {
 		try {
-			return await this.$axios.$get(`${this.$config.domain}api/post/admin/${id}`);
+			return await this.$axios.$get(`${this.$config.domain}/api/post/admin/${id}`);
 		} catch (e) {
 			commit('setError', e, { root: true });
 			throw e;
@@ -71,6 +71,15 @@ export const actions = {
 	async addView({ commit }, { _id, views }) {
 		try {
 			return await this.$axios.$put(`${this.$config.domain}/api/post/add/view/${_id}`, { views });
+		} catch (e) {
+			commit('setError', e, { root: true });
+			throw e;
+		}
+	},
+
+	async getAnalytics({ commit }) {
+		try {
+			return await this.$axios.$get(`${this.$config.domain}/api/post/admin/get/analytics`);
 		} catch (e) {
 			commit('setError', e, { root: true });
 			throw e;

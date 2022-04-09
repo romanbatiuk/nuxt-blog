@@ -9,6 +9,7 @@ const {
 	updatePostById,
 	removePostById,
 	addView,
+	getAnalytics,
 } = require('../controllers/post.controller');
 
 const router = Router();
@@ -24,6 +25,10 @@ router.get('/admin', passport.authenticate('jwt', { session: false }), getAllPos
 router.get('/admin/:id', passport.authenticate('jwt', { session: false }), getPostById);
 router.put('/admin/:id', passport.authenticate('jwt', { session: false }), updatePostById);
 router.delete('/admin/:id', passport.authenticate('jwt', { session: false }), removePostById);
+
+// Analytics
+
+router.get('/admin/get/analytics', passport.authenticate('jwt', { session: false }), getAnalytics);
 
 // /api/post/
 router.get('/', getAllPosts);

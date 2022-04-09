@@ -18,7 +18,11 @@ export default {
 	css: ['element-ui/lib/theme-chalk/index.css', '@/theme/index.scss'],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: ['@/plugins/globals', '@/plugins/axios'],
+	plugins: [
+		'@/plugins/globals',
+		'@/plugins/axios',
+		{ src: '@/plugins/vue-chart.js', mode: 'client' },
+	],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
