@@ -58,6 +58,8 @@ export default {
 			image: null,
 		};
 	},
+
+	head: { title: `New article | ${process.env.AppName}` },
 	methods: {
 		handleImageChange(file, filelist) {
 			this.image = file.raw;

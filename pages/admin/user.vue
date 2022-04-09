@@ -35,6 +35,7 @@ export default {
 			loading: false,
 		};
 	},
+	head: { title: `New user | ${process.env.AppName}` },
 	methods: {
 		onSubmit() {
 			this.$refs.form.validate(async (valid) => {

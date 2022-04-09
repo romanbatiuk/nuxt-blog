@@ -19,5 +19,7 @@ export default {
 		const { views, comments } = await store.dispatch('post/getAnalytics');
 		return { views, comments };
 	},
+
+	head: { title: `Analytics | ${process.env.AppName}` },
 };
 </script>

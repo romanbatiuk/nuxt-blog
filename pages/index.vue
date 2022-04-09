@@ -18,7 +18,7 @@ export default {
 	},
 
 	head: {
-		title: 'HomePage',
+		title: `Home | ${process.env.AppName}`,
 	},
 };
 </script>

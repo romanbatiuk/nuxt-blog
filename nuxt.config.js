@@ -45,9 +45,9 @@ export default {
 		baseURL: '/',
 	},
 
-	// env: {
-	// 	baseUrl: process.env.BASE_URL || 'http://localhost:5000',
-	// },
+	env: {
+		AppName: 'SSR Blog',
+	},
 
 	publicRuntimeConfig: {
 		domain: process.env.BASE_URL,

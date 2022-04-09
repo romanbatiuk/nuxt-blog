@@ -11,7 +11,7 @@
 			</el-form-item>
 
 			<div class="mb post-info">
-				<small><i class="el-icon-time"></i> {{ new Date(post.date).toLocaleString() }}</small>
+				<small><i class="el-icon-time"></i> {{ post.date | date }}</small>
 
 				<small>
 					<i class="el-icon-view"></i>
@@ -49,7 +49,7 @@ export default {
 		};
 	},
 	head() {
-		return { title: `Пост | ${this.post.title}` };
+		return { title: `${this.post.title} |  ${process.env.AppName}` };
 	},
 	mounted() {
 		this.controls.text = this.post.text;

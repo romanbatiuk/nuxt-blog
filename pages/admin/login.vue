@@ -36,7 +36,7 @@ export default {
 			loading: false,
 		};
 	},
-
+	head: { title: `Login | ${process.env.AppName}` },
 	mounted() {
 		const { message } = this.$route.query;
 

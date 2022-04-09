@@ -6,7 +6,7 @@
 				<nuxt-link to="/"><i class="el-icon-back"></i></nuxt-link>
 			</div>
 			<div class="post-header__info">
-				<small><i class="el-icon-time"></i>{{ new Date(post.date).toLocaleString() }}</small>
+				<small><i class="el-icon-time"></i> {{ post.date | date }}</small>
 				<small><i class="el-icon-view el-i"></i> {{ post.views }}</small>
 			</div>
 			<div class="post-header__img"><img :src="image" :alt="post.title" /></div>
@@ -47,6 +47,9 @@ export default {
 		return {
 			commentForm: true,
 		};
+	},
+	head() {
+		return { title: `${this.post.title} | ${process.env.AppName}` };
 	},
 	computed: {
 		image() {
