@@ -1,5 +1,10 @@
 <template>
 	<el-menu router :default-active="$route.path" :style="{ height: '100%' }">
+		<el-menu-item index="/" target="_blank">
+			<i class="el-icon-s-home"></i>
+			<span>Home</span>
+		</el-menu-item>
+
 		<el-menu-item index="/admin">
 			<i class="el-icon-menu"></i>
 			<span>Аналитика</span>
