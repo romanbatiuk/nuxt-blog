@@ -1,17 +1,17 @@
 <template>
 	<el-card shadow="always" :style="{ width: '500px' }">
-		<h3 class="text-center">Войти в панель администратора</h3>
+		<h3 class="text-center">Login to admin panel</h3>
 		<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
-			<el-form-item label="Логин" prop="login">
+			<el-form-item label="Login" prop="login">
 				<el-input v-model.trim="controls.login"></el-input>
 			</el-form-item>
 			<div class="mb2">
-				<el-form-item label="Пароль" prop="password">
+				<el-form-item label="Password" prop="password">
 					<el-input v-model="controls.password" type="password"></el-input>
 				</el-form-item>
 			</div>
 			<el-form-item>
-				<el-button type="primary" native-type="submit" round :loading="loading">Войти</el-button>
+				<el-button type="primary" native-type="submit" round :loading="loading">Sign In</el-button>
 			</el-form-item>
 		</el-form>
 	</el-card>
@@ -27,10 +27,10 @@ export default {
 				password: '',
 			},
 			rules: {
-				login: [{ required: true, message: 'Введите логин', trigger: 'blur' }],
+				login: [{ required: true, message: 'Enter login', trigger: 'blur' }],
 				password: [
-					{ required: true, message: 'Введите пароль', trigger: 'blur' },
-					{ min: 6, message: 'Минимальная длина пароля 6 символов', trigger: 'blur' },
+					{ required: true, message: 'Enter password', trigger: 'blur' },
+					{ min: 6, message: 'Minimum password length 6 characters', trigger: 'blur' },
 				],
 			},
 			loading: false,
@@ -42,13 +42,13 @@ export default {
 
 		switch (message) {
 			case 'login':
-				this.$message.info('Вам нужно войти в систему');
+				this.$message.info('You need to login');
 				break;
 			case 'session':
-				this.$message.warning('Время сессии истекло, зайдите заново');
+				this.$message.warning('Session timed out, please login again');
 				break;
 			case 'logout':
-				this.$message.info('Вы вышли из системы');
+				this.$message.info('You are logged out');
 				break;
 		}
 	},

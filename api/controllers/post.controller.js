@@ -9,7 +9,7 @@ module.exports.createPost = async (req, res) => {
 
 	try {
 		await post.save();
-		res.status(201).json({ message: 'Пост успешно создан', post });
+		res.status(201).json({ message: 'Article successfully created', post });
 	} catch (err) {
 		res.status(500).json(err);
 	}
@@ -48,7 +48,7 @@ module.exports.updatePostById = async (req, res) => {
 module.exports.removePostById = async (req, res) => {
 	try {
 		await Post.deleteOne({ _id: req.params.id });
-		res.status(200).json({ message: 'Пост успешно удален' });
+		res.status(200).json({ message: 'Article successfully deleted' });
 	} catch (err) {
 		res.status(500).json(err);
 	}

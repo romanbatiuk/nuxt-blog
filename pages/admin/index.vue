@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<h1>Analytics</h1>
-		<BarChart title="Количество просмотров" :labels="views.labels" :data="views.data" />
-		<BarChart title="Количество комментариев" :labels="comments.labels" :data="comments.data" />
+		<BarChart title="Number of views" :labels="views.labels" :data="views.data" />
+		<BarChart title="Number of comments" :labels="comments.labels" :data="comments.data" />
 	</div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
 	<div class="page-wrap">
 		<el-breadcrumb separator-class="el-icon-arrow-right" class="mb">
-			<el-breadcrumb-item to="/admin/list">Посты</el-breadcrumb-item>
+			<el-breadcrumb-item to="/admin/list">Articles</el-breadcrumb-item>
 			<el-breadcrumb-item>{{ post.title }}</el-breadcrumb-item>
 		</el-breadcrumb>
 
 		<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
-			<el-form-item label="Текст в формате .md или .html" prop="text">
+			<el-form-item label="Text format .md или .html" prop="text">
 				<el-input v-model.trim="controls.text" type="textarea" :rows="10" resize="none"></el-input>
 			</el-form-item>
 
@@ -20,7 +20,7 @@
 			</div>
 
 			<el-form-item>
-				<el-button type="primary" native-type="submit" round :loading="loading">Обновить</el-button>
+				<el-button type="primary" native-type="submit" round :loading="loading">Update</el-button>
 			</el-form-item>
 		</el-form>
 	</div>
@@ -43,7 +43,7 @@ export default {
 				text: '',
 			},
 			rules: {
-				text: [{ required: true, message: 'Текст не должен быть пустым', trigger: 'blur' }],
+				text: [{ required: true, message: 'Text must not be empty', trigger: 'blur' }],
 			},
 			loading: false,
 		};
@@ -65,7 +65,7 @@ export default {
 							id: this.post._id,
 						};
 						await this.$store.dispatch('post/update', formData);
-						this.$message.success('Пост обновлен');
+						this.$message.success('Article successfully updated');
 						this.loading = false;
 					} catch (e) {
 						console.log(e);

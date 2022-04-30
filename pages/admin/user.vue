@@ -1,16 +1,16 @@
 <template>
 	<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
-		<h2 class="mb">Создать пользователя</h2>
-		<el-form-item label="Логин" prop="login">
+		<h2 class="mb">Create user</h2>
+		<el-form-item label="Login" prop="login">
 			<el-input v-model.trim="controls.login"></el-input>
 		</el-form-item>
 		<div class="mb2">
-			<el-form-item label="Пароль" prop="password">
+			<el-form-item label="Password" prop="password">
 				<el-input v-model="controls.password" type="password"></el-input>
 			</el-form-item>
 		</div>
 		<el-form-item>
-			<el-button type="primary" native-type="submit" round :loading="loading">Создать</el-button>
+			<el-button type="primary" native-type="submit" round :loading="loading">Create</el-button>
 		</el-form-item>
 	</el-form>
 </template>
@@ -26,10 +26,10 @@ export default {
 				password: '',
 			},
 			rules: {
-				login: [{ required: true, message: 'Введите логин', trigger: 'blur' }],
+				login: [{ required: true, message: 'Enter login', trigger: 'blur' }],
 				password: [
-					{ required: true, message: 'Введите пароль', trigger: 'blur' },
-					{ min: 6, message: 'Минимальная длина пароля 6 символов', trigger: 'blur' },
+					{ required: true, message: 'Enter password', trigger: 'blur' },
+					{ min: 6, message: 'Minimum password length 6 characters', trigger: 'blur' },
 				],
 			},
 			loading: false,
@@ -47,7 +47,7 @@ export default {
 							password: this.controls.password,
 						};
 						await this.$store.dispatch('auth/createUser', formData);
-						this.$message.success('Новый пользователь добавлен');
+						this.$message.success('New user added successfully');
 
 						this.controls.login = '';
 						this.controls.password = '';
@@ -62,5 +62,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,6 +1,6 @@
 <template>
 	<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
-		<h1>Добавить комментарий</h1>
+		<h1>Add comment</h1>
 		<el-form-item label="Your Name" prop="name">
 			<el-input v-model="controls.name" />
 		</el-form-item>
@@ -10,7 +10,7 @@
 		</el-form-item>
 
 		<el-form-item>
-			<el-button type="primary" :loading="loading" native-type="submit" round>Добавить</el-button>
+			<el-button type="primary" :loading="loading" native-type="submit" round>Add</el-button>
 		</el-form-item>
 	</el-form>
 </template>

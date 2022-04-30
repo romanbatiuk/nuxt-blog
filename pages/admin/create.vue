@@ -1,12 +1,12 @@
 <template>
 	<div class="page-wrap">
 		<el-form ref="form" :model="controls" :rules="rules" @submit.native.prevent="onSubmit">
-			<h2>Создать новый пост</h2>
-			<el-form-item label="Название поста" prop="title">
+			<h2>Create a new article</h2>
+			<el-form-item label="Name article" prop="title">
 				<el-input v-model="controls.title" type="text"></el-input>
 			</el-form-item>
 
-			<el-form-item label="Текст в формате .md или .html" prop="text">
+			<el-form-item label="Text in format .md или .html" prop="text">
 				<el-input v-model="controls.text" type="textarea" :rows="10" resize="none"></el-input>
 			</el-form-item>
 
@@ -19,18 +19,18 @@
 				:on-change="handleImageChange"
 			>
 				<i class="el-icon-upload"></i>
-				<div class="el-upload__text">Перетащите картинку <em>или нажмите</em></div>
-				<div slot="tip" class="el-upload__tip">файлы с расширением jpg/png</div>
+				<div class="el-upload__text">Drag the picture <em>or press</em></div>
+				<div slot="tip" class="el-upload__tip">files with extension jpg/png</div>
 			</el-upload>
 
 			<div class="wrap-buttons">
-				<el-button type="success" plain @click="previewDialog = true">Предпросмотр</el-button>
-				<el-button type="primary" native-type="submit" round :loading="loading">Создать</el-button>
+				<el-button type="success" plain @click="previewDialog = true">Preview</el-button>
+				<el-button type="primary" native-type="submit" round :loading="loading">Create</el-button>
 			</div>
 		</el-form>
 
 		<!-- modal -->
-		<el-dialog title="Предпросмотр" :visible.sync="previewDialog">
+		<el-dialog title="Preview" :visible.sync="previewDialog">
 			<div :key="controls.text">
 				<vue-markdown>{{ controls.text }}</vue-markdown>
 			</div>
@@ -50,8 +50,8 @@ export default {
 				title: '',
 			},
 			rules: {
-				text: [{ required: true, message: 'Текст не должен быть пустым', trigger: 'blur' }],
-				title: [{ required: true, message: 'Название поста может быть пустым', trigger: 'blur' }],
+				text: [{ required: true, message: 'The text should not be blank', trigger: 'blur' }],
+				title: [{ required: true, message: 'The post title may be blank', trigger: 'blur' }],
 			},
 			loading: false,
 			previewDialog: false,
@@ -80,14 +80,14 @@ export default {
 						this.controls.text = '';
 						this.image = null;
 						this.$refs.upload.clearFiles();
-						this.$message.success('Пост был успешно создан!');
+						this.$message.success('The post was successfully created!');
 					} catch (err) {
 						console.log(err);
 					} finally {
 						this.loading = false;
 					}
 				} else {
-					this.$message.warning('Форма не валидна');
+					this.$message.warning('Form is invalid');
 				}
 			});
 		},

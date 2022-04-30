@@ -22,7 +22,7 @@
 			<div v-if="post.comments.length" class="comments">
 				<app-comment v-for="comment in post.comments" :key="comment._id" :comment="comment" />
 			</div>
-			<div v-else class="text-center"><b>Комментариев нет</b></div>
+			<div v-else class="text-center"><b>There are no comments</b></div>
 		</footer>
 	</article>
 </template>
